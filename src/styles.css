@@ -1,0 +1,44 @@
+.App {
+  font-family: sans-serif;
+  /* text-align: center; */
+}
+
+.order-card {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.order-card main {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.order-card header {
+  background-color: lightblue;
+  padding: 8px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.order-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-card h3 {
+  margin: 0;
+}
+
+td {
+  padding: 4px;
+  border: 1px solid lightgray;
+}
+table {
+  margin-bottom: 12px;
+}
