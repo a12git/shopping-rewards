@@ -1,181 +1,47 @@
+<p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
 
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>Client Name:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>Tenant Healthcare</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>PID:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>123456</p>
-        </div>
-    </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Country</th>
+      <th scope="col">Area</th>
+      <th scope="col">Population</th>
+      <th scope="col">Area</th>
+      <th scope="col">Population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let country of countries; index as i">
+      <tr (click)="selectedRow(country.id)">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{ country.name }}
+        </td>
+        <td>{{ country.solidId}}</td>
+        <td>{{ country.status }}</td>
+        <td>{{ country.approved_ae }}</td>
 
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>Street Address:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>123 Street Name</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>Short Name:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>Tenant</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>Street Address 2:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>123 Street Name</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>IP type:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>Client</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>Street Address 3:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>123 Street Name 3</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <!-- <p>IP type:</p> -->
-        </div>
-        <div class="col-md-2 move-left">
-            <!-- <p>Client</p> -->
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>City:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>Dallas</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>Division Name:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>N/A</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>State:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>Texas</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>Established Date</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>12/24/1998</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>Zip Code:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>54321</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>Telephone number</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>(987)654-3210</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>Country:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>USA</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>SPS</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>B32165A</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>Industry:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>Healthcare</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>Total asset</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>&#x24;0.00</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>PP&A Asset Amount</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>&#x24; 0.00</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>IDB ID:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>dollor 0.00</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2 move-right">
-            <p>Last Updated by: </p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>Kiran (A12345)</p>
-        </div>
-        <div class="col-md-2 move-right">
-            <p>Last Updated Date/Time:</p>
-        </div>
-        <div class="col-md-2 move-left">
-            <p>01/10/2022, 08:15:15</p>
-        </div>
-    </div>
+        <td>{{ country.count }}</td>
+      </tr>
+      <ng-container *ngIf="selectedCountry === country.id">
+          <tr *ngFor="let child of country.childData">
+            <td>{{child.name}}</td>
+            <td>{{child.solidid}}</td>
+            <td>{{child.TA}}</td>
+            <td>{{child.status}}</td>
+            <td>{{child.Approved_AE}}</td>
+            <td>{{child.count}}</td>
+          </tr>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table>
 
 
 
-.move-right {
-    display: flex !important;
-    justify-content: right !important;
-    font-size: 16px;
-    font-weight: 400;
-}
-
-.move-left {
-    display: flex !important;
-    justify-content: left !important;
-    font-size: 16px;
-    font-weight: 400;
-}
+  selectedCountry = 1;
+  countries = COUNTRIES;
+selectedRow(id) {
+    this.selectedCountry = id;
+  }
