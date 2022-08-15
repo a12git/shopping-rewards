@@ -120,3 +120,8 @@ const COUNTRIES: any[] = [
     ]
   }
 ];
+
+
+ <td>
+          <i [ngClass]="selectedCountry === country.id ? 'fa fa-minus-square' : 'fa fa-plus-square'" aria-hidden="true"></i>{{ country.name }}
+        </td>
