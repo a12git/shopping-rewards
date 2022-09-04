@@ -1,127 +1,33 @@
-<p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
+import { Directive, ElementRef, HostListener } from '@angular/core';
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Country</th>
-      <th scope="col">Area</th>
-      <th scope="col">Population</th>
-      <th scope="col">Area</th>
-      <th scope="col">Population</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let country of countries; index as i">
-      <tr (click)="selectedRow(country.id)">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>
-          {{ country.name }}
-        </td>
-        <td>{{ country.solidId}}</td>
-        <td>{{ country.status }}</td>
-        <td>{{ country.approved_ae }}</td>
-
-        <td>{{ country.count }}</td>
-      </tr>
-      <ng-container *ngIf="selectedCountry === country.id">
-          <tr *ngFor="let child of country.childData">
-            <td>{{child.name}}</td>
-            <td>{{child.solidid}}</td>
-            <td>{{child.TA}}</td>
-            <td>{{child.status}}</td>
-            <td>{{child.Approved_AE}}</td>
-            <td>{{child.count}}</td>
-          </tr>
-      </ng-container>
-    </ng-container>
-  </tbody>
-</table>
-
-
-
-  selectedCountry = 1;
-  countries = COUNTRIES;
-selectedRow(id) {
-    this.selectedCountry = id;
+@Directive({
+  selector: '[appKeyBoardRestrict]'
+})
+export class KeyBoardRestrictDirective {
+  @HostListener('keypress', ['$event']) onKeyDown(event: KeyboardEvent) {
+    this.checkElementInfo(event);
+  }
+  constructor(private elementRef: ElementRef) {
+    console.log(this.elementRef.nativeElement);
   }
 
-
-
-const COUNTRIES: any[] = [
-  {
-    id: 1,
-    name: 'Russia',
-    solidId: 'f/f3/Flag_of_Russia.svg',
-    TA: 17075200,
-    status: 146989754,
-    approved_ae: 'Thomous',
-    count: 3,
-    childData: [
-      {
-        name: 'Apparture Testing',
-        solidid: 35454,
-        TA: 'FBSI',
-        status: 'Active',
-        Approved_AE: 'Thomous',
-        count: 1
-      },
-      {
-        name: '',
-        solidid: 35454,
-        TA: 'FBSI',
-        status: 'Active',
-        Approved_AE: 'Thomous',
-        count: 1
-      },
-      {
-        name: 'Apparture Testing',
-        solidid: 35454,
-        TA: 'FBSI',
-        status: 'Active',
-        Approved_AE: 'Thomous',
-        count: 1
+  checkElementInfo(event: KeyboardEvent) {
+    var inp = String.fromCharCode(event.keyCode);
+    if(inp.trim() === '' ) {
+      if(!this.elementRef.nativeElement.value || this.elementRef.nativeElement.value.trim() === '') {
+        event.preventDefault();
+        return false;
       }
-    ]
-  },
-  {
-    id: 2,
-    name: 'Asia',
-    solidId: 'f/f3/Flag_of_Russia.svg',
-    TA: 17075200,
-    status: 146989754,
-    approved_ae: 'Sai',
-    count: 4,
-    childData: [
-      {
-        name: 'Apparture Testing 1',
-        solidid: 35454,
-        TA: 'FBSI',
-        status: 'Active',
-        Approved_AE: 'Thomous 1',
-        count: 1
-      },
-      {
-        name: 'haha',
-        solidid: 35454,
-        TA: 'FBSI',
-        status: 'Active',
-        Approved_AE: 'Thomous 1',
-        count: 1
-      },
-      {
-        name: 'Apparture Testing not',
-        solidid: 35454,
-        TA: 'FBSI',
-        status: 'Active',
-        Approved_AE: 'Thomous 4',
-        count: 1
+      return true;
+    } else {
+      if (/[a-zA-Z0-9 ]/.test(inp)) {
+        return true;
+      } else {
+        event.preventDefault();
+        return false;
       }
-    ]
+    }
+    
   }
-];
 
-
- <td>
-          <i [ngClass]="selectedCountry === country.id ? 'fa fa-minus-square' : 'fa fa-plus-square'" aria-hidden="true"></i>{{ country.name }}
-        </td>
+}
