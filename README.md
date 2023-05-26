@@ -1,60 +1,9 @@
-var arr = [
-  {
-    "status": {
-        "code": "A   ",
-        "description": "Active"
-    },
-    "statusReason": {
-        "code": "ACT ",
-        "description": "ACTIVE REGISTRANT"
-    }
-},
-    {
-    "status": {
-        "code": "I",
-        "description": "Active"
-    },
-    "statusReason": {
-        "code": "ACT ",
-        "description": "INACTIVE REGISTRANT1"
-    }
-},
-    {
-    "status": {
-        "code": "I",
-        "description": "Active"
-    },
-    "statusReason": {
-        "code": "ACT ",
-        "description": "inACTIVE REGISTRANT"
-    }
-}
-];
-
-const result = arr.reduce(function(previousValue, currentValue, index) {
-if(previousValue.length === 0) {
-    previousValue.push({...currentValue, reasonDescriptions: currentValue.statusReason.description});
-} else {
-    const index = previousValue.indexOf(obj => obj.status.code.trim() === currentValue.status.code.trim());
+const filteredArr = [];
+for(let i = 0 ; i< arr.length ;i++) {
+    const index = filteredArr.findIndex((obj) => obj.status.code === arr[i].status.code);
     if(index !== -1) {
-        previousValue[index].reasonDescriptions += ',' + currentValue.statusReason.description;
+        filteredArr[index].reasonDescriptions = filteredArr[index].reasonDescriptions + ',' + arr[i].statusReason.description;
     } else {
-        previousValue.push(currentValue);
+        filteredArr.push({...arr[i], reasonDescriptions: arr[i].statusReason.description});
     }
 }
-return previousValue;
-}, []);
-
-console.log(result);
-
-
-
-
-
-
-
-
-
-
-
-
