@@ -1,9 +1,8 @@
-const filteredArr = [];
-for(let i = 0 ; i< arr.length ;i++) {
-    const index = filteredArr.findIndex((obj) => obj.status.code === arr[i].status.code);
+for(const element of arr) {
+    const index = filteredArr.findIndex((obj) => obj.status.code === element.status.code);
     if(index !== -1) {
-        filteredArr[index].reasonDescriptions = filteredArr[index].reasonDescriptions + ',' + arr[i].statusReason.description;
+        filteredArr[index].reasonDescriptions = filteredArr[index].reasonDescriptions + ',' + element.statusReason.description;
     } else {
-        filteredArr.push({...arr[i], reasonDescriptions: arr[i].statusReason.description});
+        filteredArr.push({...element, reasonDescriptions: element.statusReason.description});
     }
 }
